@@ -1,71 +1,585 @@
 <!DOCTYPE html>
-<html>
-<!-- Goal: show CSS skills and basic HTML -->
+<html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kareem El Sayed</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <link href="https://fonts.googleapis.com/css?family=Merriweather|Montserrat|Sacramento" rel="stylesheet">
-  <link rel="icon" href="favicon.ico">
+  <title>Kareem El Sayed | Salesforce Application Architect</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #1a1a1a;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      color: white;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    .hero .subtitle {
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      font-weight: 300;
+      margin-bottom: 1rem;
+      opacity: 0.95;
+      animation: fadeInUp 0.8s ease 0.2s both;
+    }
+
+    .hero .tagline {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      margin-bottom: 2.5rem;
+      opacity: 0.9;
+      animation: fadeInUp 0.8s ease 0.4s both;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.8s ease 0.6s both;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-block;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      background: white;
+      color: #667eea;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .btn-secondary:hover {
+      background: white;
+      color: #667eea;
+      transform: translateY(-3px);
+    }
+
+    /* Certifications Badge Section */
+    .certifications {
+      padding: 4rem 2rem;
+      background: #f8f9fa;
+      text-align: center;
+    }
+
+    .certifications h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #1a1a1a;
+    }
+
+    .cert-count {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #667eea;
+      margin: 1rem 0;
+    }
+
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 3rem auto 0;
+    }
+
+    .cert-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .cert-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .cert-card h3 {
+      color: #667eea;
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    /* About Section */
+    .about {
+      padding: 5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .about h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      color: #1a1a1a;
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+
+    .about-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #4a5568;
+    }
+
+    .highlight {
+      color: #667eea;
+      font-weight: 600;
+    }
+
+    /* Experience Section */
+    .experience {
+      padding: 5rem 2rem;
+      background: #f8f9fa;
+    }
+
+    .experience h2 {
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      text-align: center;
+      color: #1a1a1a;
+    }
+
+    .timeline {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .timeline-item {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      border-left: 4px solid #667eea;
+    }
+
+    .timeline-item h3 {
+      color: #667eea;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-item .company {
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-item .date {
+      color: #718096;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .timeline-item ul {
+      margin-left: 1.5rem;
+      color: #4a5568;
+    }
+
+    /* Skills Section */
+    .skills {
+      padding: 5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .skills h2 {
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      text-align: center;
+      color: #1a1a1a;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .skill-category {
+      background: #f8f9fa;
+      padding: 2rem;
+      border-radius: 12px;
+    }
+
+    .skill-category h3 {
+      color: #667eea;
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      background: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      color: #4a5568;
+      border: 1px solid #e2e8f0;
+    }
+
+    /* Contact Section */
+    .contact {
+      padding: 5rem 2rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.95;
+    }
+
+    .contact-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Footer */
+    footer {
+      background: #1a1a1a;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #a0aec0;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .about-content {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
-
 <body>
-  <div class="top-container">
-    <img class="top-cloud" src="images/cloud.png" alt="cloud">
-    <div class="title-text">
-      <h1>I am Kareem.</h1>
-      <h2>a <span class="pro">pro</span>grammer.</h2>
-    </div>
-    <img class="bottom-cloud" src="images/cloud.png" alt="cloud">
-    <img class="mountain" src="images/mountain.png" alt="mountain-img">
-  </div>
-
-  <div class="middle-container">
-    <div class="profile">
-      <img class="my-img"src="images/kareem.png" alt="kareem-profile-img">
-      <h2>Hello.</h2>
-      <p class="intro">I am persistant, hardworking and ambitious.</p>
-    </div>
-    <hr>
-    <div class="skills">
-      <h2>Skills.</h2>
-      <div class="skill-row">
-        <img class="webdev-img" src="images/web-dev.jpg" alt="code-img">
-
-        <h3>Design & Develope</h3>
-        <p>I began learning to code when I turned 17 years old because I became really interested in building my own projects. Over the years, I have gained a lot of experience in designing and building my own software.</p>
-
-      </div>
-      <div class="skill-row">
-        <img class="probsol-img" src="images/problem-solver.jpg" alt="probsol-img">
-
-        <h3>Problem Solver</h3>
-        <p>Dedicated to solve problems. Every day in life, new problems arise with different ratio levels of solvability. As a problem solver I love to challenge myself. One of my favorite quotes would be <q
-            cite="https://www.brainyquote.com/authors/marcus-aurelius-quotes">To the wise, life is a problem; to the fool, a solution.</q> by Marcus Aurelius.</p>
-
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Kareem El Sayed</h1>
+      <p class="subtitle">Salesforce Application Architect & Python Automation Expert</p>
+      <p class="tagline">Building enterprise Salesforce solutions | Creating intelligent automation & bots | Government Cloud specialist</p>
+      <div class="cta-buttons">
+        <a href="mailto:kareemthedeveloper@gmail.com" class="btn btn-primary">Get In Touch</a>
+        <a href="https://github.com/kareemelsayed22" class="btn btn-secondary" target="_blank">View GitHub Projects</a>
       </div>
     </div>
-    <hr>
-    <div class="contact-me">
-      <h2>Get In Touch</h2>
-      <h3>If you love problems as much as I do. And would like to discuss it to find an optimal solution.</h3>
-      <p class="contact-message">Love problems as much as I do?. Let's talk about it!</p>
-      <a class="btn" href="mailto:kareemelsayed1922@gmail.com">EMAIl ME</a>
+  </section>
+
+  <!-- Certifications Section -->
+  <section class="certifications">
+    <h2>Certified Salesforce Professional</h2>
+    <div class="cert-count">9 Certifications</div>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <h3>🏗️ Application Architect</h3>
+        <p>Enterprise solution design & architecture</p>
+      </div>
+      <div class="cert-card">
+        <h3>📊 Data Architect</h3>
+        <p>Large-scale data modeling & migration</p>
+      </div>
+      <div class="cert-card">
+        <h3>🔐 Sharing & Visibility Architect</h3>
+        <p>Security & access control design</p>
+      </div>
+      <div class="cert-card">
+        <h3>💻 Platform Developer II</h3>
+        <p>Advanced Apex & LWC development</p>
+      </div>
+      <div class="cert-card">
+        <h3>⚡ Platform Developer I</h3>
+        <p>Core Salesforce development</p>
+      </div>
+      <div class="cert-card">
+        <h3>🟨 JavaScript Developer I</h3>
+        <p>Modern web development</p>
+      </div>
+      <div class="cert-card">
+        <h3>🔧 App Builder</h3>
+        <p>Declarative solution design</p>
+      </div>
+      <div class="cert-card">
+        <h3>⚙️ Administrator</h3>
+        <p>Platform configuration & management</p>
+      </div>
+      <div class="cert-card">
+        <h3>🚀 Flosum Certified</h3>
+        <p>DevOps & deployment automation</p>
+      </div>
     </div>
-  </div>
+  </section>
 
+  <!-- About Section -->
+  <section class="about">
+    <h2>About Me</h2>
+    <div class="about-content">
+      <div class="about-text">
+        <p>I'm an innovative <span class="highlight">Salesforce Application Architect</span> and <span class="highlight">Python Automation Specialist</span> with extensive experience designing scalable solutions. My expertise spans <span class="highlight">Government Cloud, Experience Cloud, Marketing Cloud, Sales Cloud, Service Cloud, and Commerce Cloud</span>.</p>
+      </div>
+      <div class="about-text">
+        <p>Beyond Salesforce, I'm a skilled <span class="highlight">Python developer</span> who builds intelligent automation solutions and bots. I specialize in creating custom automation scripts, integrating APIs, and developing bots that streamline workflows and solve complex business problems. My dual expertise in Salesforce and Python automation makes me uniquely positioned to deliver end-to-end technical solutions.</p>
+      </div>
+    </div>
+  </section>
 
-  <div class="bottom-container">
-    <a class="footer-link" href="https://www.linkedin.com/in/kareem-el-sayed-may81997/">LinkedIn</a>
-    <a class="footer-link" href="https://kareemelsayed22.github.io/CV/">CV</a>
-    <a class="footer-link" href="https://elka9936.000webhostapp.com">Search Engine</a>
-    <a class="footer-link" href="images/Kareem-Resume.pdf">Resume</a>
-    <a class="footer-link" href="https://github.com/kareemelsayed22">Github Profile</a>
+  <!-- Experience Highlights -->
+  <section class="experience">
+    <h2>Experience Highlights</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h3>Python Bot Developer & Automation Specialist</h3>
+        <p class="company">Personal Projects & Freelance</p>
+        <p class="date">Ongoing</p>
+        <ul>
+          <li>Developed multiple custom bots using Python for workflow automation and data processing</li>
+          <li>Created intelligent automation scripts that integrate with various APIs and services</li>
+          <li>Built different autonomous crypto trading bots focused on the Solana blockchain to trade live on different platforms with real time telegram updates</li>
+          <li>Designed different auto apply bots to streamline the application submission workflow on Linkedin and Dice</li>
+        </ul>
+      </div>
 
+      <div class="timeline-item">
+        <h3>Team Lead</h3>
+        <p class="company">Pantheon Data</p>
+        <p class="date">Aug 2024 – May 2025</p>
+        <ul>
+          <li>Led end-to-end Salesforce Government Cloud solutions for Department of Defense</li>
+          <li>Architected Public Sector TRM-based solutions using OmniStudio (OmniScripts, DataRaptors, Integration Procedures)</li>
+          <li>Orchestrated micro-solutioning of user stories into scalable Salesforce deliverables</li>
+        </ul>
+      </div>
 
-    <p class="copyright">© 2019 Kareem El Sayed.</p>
-  </div>
+      <div class="timeline-item">
+        <h3>Sr Associate Salesforce Consultant</h3>
+        <p class="company">Nuvitek</p>
+        <p class="date">Oct 2023 – May 2024</p>
+        <ul>
+          <li>Co-led Government Cloud projects ensuring best practices in Sales & Service Cloud</li>
+          <li>Provided expert guidance on code standards and performance optimization</li>
+          <li>Conducted meticulous code reviews and recommended cutting-edge Salesforce methodologies</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <h3>Salesforce Developer/Analyst</h3>
+        <p class="company">Warner Music Group</p>
+        <p class="date">Feb 2023 – Nov 2023</p>
+        <ul>
+          <li>Migrated 38 workflows and 12 process builders to consolidated flows</li>
+          <li>Designed Quarter Revenue Calculator for streamlined revenue tracking</li>
+          <li>Built versatile LWCs for bulk contract approval and Excel file processing</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="skills">
+    <h2>Technical Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-category">
+        <h3>Salesforce Development</h3>
+        <div class="skill-tags">
+          <span class="tag">Apex</span>
+          <span class="tag">LWC</span>
+          <span class="tag">Aura</span>
+          <span class="tag">Visualforce</span>
+          <span class="tag">SOQL/SOSL</span>
+        </div>
+      </div>
+
+      <div class="skill-category">
+        <h3>Python & Automation</h3>
+        <div class="skill-tags">
+          <span class="tag">Python Scripting</span>
+          <span class="tag">Bot Development</span>
+          <span class="tag">Process Automation</span>
+          <span class="tag">Web Scraping</span>
+          <span class="tag">API Integration</span>
+        </div>
+      </div>
+
+      <div class="skill-category">
+        <h3>Salesforce Clouds</h3>
+        <div class="skill-tags">
+          <span class="tag">Government Cloud</span>
+          <span class="tag">Sales Cloud</span>
+          <span class="tag">Service Cloud</span>
+          <span class="tag">Marketing Cloud</span>
+          <span class="tag">Experience Cloud</span>
+        </div>
+      </div>
+
+      <div class="skill-category">
+        <h3>Integration & APIs</h3>
+        <div class="skill-tags">
+          <span class="tag">REST</span>
+          <span class="tag">SOAP</span>
+          <span class="tag">Mulesoft</span>
+          <span class="tag">Bulk API</span>
+          <span class="tag">Streaming API</span>
+        </div>
+      </div>
+
+      <div class="skill-category">
+        <h3>DevOps & Tools</h3>
+        <div class="skill-tags">
+          <span class="tag">Copado</span>
+          <span class="tag">Gearset</span>
+          <span class="tag">GitHub</span>
+          <span class="tag">SFDX CLI</span>
+          <span class="tag">Flosum</span>
+        </div>
+      </div>
+
+      <div class="skill-category">
+        <h3>Programming Languages</h3>
+        <div class="skill-tags">
+          <span class="tag">Python</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Java</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">Ruby</span>
+        </div>
+      </div>
+
+      <div class="skill-category">
+        <h3>Salesforce Industries</h3>
+        <div class="skill-tags">
+          <span class="tag">OmniScripts</span>
+          <span class="tag">DataRaptors</span>
+          <span class="tag">Integration Procedures</span>
+          <span class="tag">FlexCards</span>
+        </div>
+      </div>
+
+      <div class="skill-category">
+        <h3>Data & Databases</h3>
+        <div class="skill-tags">
+          <span class="tag">SQL</span>
+          <span class="tag">NoSQL</span>
+          <span class="tag">Data Migration</span>
+          <span class="tag">ETL Processes</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact">
+    <h2>Let's Build Something Great</h2>
+    <p>Need a Salesforce architect or Python automation expert? From enterprise CRM solutions to intelligent bots - let's connect.</p>
+    <div class="contact-buttons">
+      <a href="mailto:kareemthedeveloper@gmail.com" class="btn btn-primary">Email Me</a>
+      <a href="https://github.com/kareemelsayed22" class="btn btn-secondary" target="_blank">View My Projects</a>
+      <a href="https://www.linkedin.com/in/elsayed-kareem/" class="btn btn-secondary" target="_blank">LinkedIn</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-links">
+      <a href="https://github.com/kareemelsayed22" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/elsayed-kareem/" target="_blank">LinkedIn</a>
+      <a href="images/Kareem-Resume.pdf" target="_blank">Resume PDF</a>
+      <a href="tel:+13474457981">(347) 445-7981</a>
+    </div>
+    <p>© 2025 Kareem El Sayed. Salesforce Application Architect & Python Automation Expert.</p>
+  </footer>
 </body>
-
+</html>
 </html>
